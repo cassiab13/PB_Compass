@@ -1,0 +1,1363 @@
+{
+	"info": {
+		"_postman_id": "ea437a57-a1c9-41c8-b5d5-4facc9a5145b",
+		"name": "PetStore 3.0 API",
+		"description": "Coleção Postman para a API PetStore 3.0 do Batman.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26719194"
+	},
+	"item": [
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "Adicionar novo pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 51,\r\n  \"name\": \"Puppy\",\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"tag35\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/pet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar pet existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 51,\r\n  \"name\": \"Puppy test\",\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"tag33\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/pet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar pets por status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pet/findByStatus?status=sold",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet",
+								"findByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "available",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "sold"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar pet por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/78",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar pet com form data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pet/51?name=Puppy form data&status=sold",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet",
+								"51"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Puppy form data"
+								},
+								{
+									"key": "status",
+									"value": "sold"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar pet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pet/51",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload de imagem para pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/10/uploadImage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"10",
+								"uploadImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar pet por tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pet/findByTags?tags=string",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pet",
+								"findByTags"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "tag0",
+									"disabled": true
+								},
+								{
+									"key": "tags",
+									"value": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Everything about your Pets"
+		},
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Inventário de pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/store/inventory",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Realizar pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 78,\r\n  \"petId\": 51,\r\n  \"quantity\": 7,\r\n  \"shipDate\": \"2025-05-02T16:53:44.109Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/store/order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 78,\r\n  \"petId\": 51,\r\n  \"quantity\": 7,\r\n  \"shipDate\": \"2025-05-02T16:53:44.109Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/store/order",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"store",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 20:06:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 78,\n    \"petId\": 51,\n    \"quantity\": 7,\n    \"shipDate\": \"2025-05-02T16:53:44.109+00:00\",\n    \"status\": \"approved\",\n    \"complete\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar pedido por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/store/order/78",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar pedido por ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/store/order/78",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"store",
+								"order",
+								"78"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Access to Petstore orders"
+		},
+		{
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Criar usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "1234567",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 153,\r\n  \"username\": \"Username123456\",\r\n  \"firstName\": \"Teste\",\r\n  \"lastName\": \"Java\",\r\n  \"email\": \"teste_user12344@gmail.com\",\r\n  \"password\": \"12345\",\r\n  \"phone\": \"12345\",\r\n  \"userStatus\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 153,\r\n  \"username\": \"Username123456\",\r\n  \"firstName\": \"Teste\",\r\n  \"lastName\": \"Java\",\r\n  \"email\": \"teste_user12344@gmail.com\",\r\n  \"password\": \"12345\",\r\n  \"phone\": \"12345\",\r\n  \"userStatus\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 20:01:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 500,\n    \"message\": \"There was an error processing your request. It has been logged (ID: 2bc03ceb85638fa3)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Criar lista de usuários",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "12345671",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"id\": 10,\r\n    \"username\": \"theUser123\",\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"James\",\r\n    \"email\": \"johndasf@email.com\",\r\n    \"password\": \"12345\",\r\n    \"phone\": \"12345\",\r\n    \"userStatus\": 1\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/createWithList",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"createWithList"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 500",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n  {\r\n    \"id\": 10,\r\n    \"username\": \"theUser123\",\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"James\",\r\n    \"email\": \"johndasf@email.com\",\r\n    \"password\": \"12345\",\r\n    \"phone\": \"12345\",\r\n    \"userStatus\": 1\r\n  }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/createWithList",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"createWithList"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 20:01:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 500,\n    \"message\": \"There was an error processing your request. It has been logged (ID: e46b92e96e5e56da)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login do usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"tester1234\",\r\n    \"password\": \"987654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"tester1234\",\r\n    \"password\": \"987654321\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 20:01:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "X-Rate-Limit",
+									"value": "5000"
+								},
+								{
+									"key": "X-Expires-After",
+									"value": "Fri May 02 21:01:10 UTC 2025"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "Logged in user session: 974206215799742548"
+						}
+					]
+				},
+				{
+					"name": "Logout do usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 19:59:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "User logged out"
+						}
+					]
+				},
+				{
+					"name": "Buscar usuário por nome",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 10,\r\n  \"name\": \"doggie test\",\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/theUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"theUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 10,\r\n  \"name\": \"doggie test\",\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/theUser",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"theUser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 19:56:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10,\n    \"username\": \"theUser\",\n    \"firstName\": \"John\",\n    \"lastName\": \"James\",\n    \"email\": \"john@email.com<svg><animate onbegin=prompt(777222539510) attributeName=x dur=1s>\",\n    \"password\": \"XXXXXXXXXXX\",\n    \"phone\": \"12345\",\n    \"userStatus\": 1\n}"
+						},
+						{
+							"name": "Response 500",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 403265468749,\r\n  \"name\": \"doggie test\",\r\n  \"category\": {\r\n    \"id\": 1,\r\n    \"name\": \"Dogs\"\r\n  },\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/user/usuarioinexistente",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"usuarioinexistente"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 19:58:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 500,\n    \"message\": \"There was an error processing your request. It has been logged (ID: d7d296a1dbea88c3)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar usuário",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "12345671",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "api-key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 10,\r\n  \"username\": \"theUser\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"James\",\r\n  \"email\": \"john@email.com\",\r\n  \"password\": \"12345\",\r\n  \"phone\": \"12345\",\r\n  \"userStatus\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/theUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"theUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 500",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 10,\r\n  \"username\": \"theUser\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"James\",\r\n  \"email\": \"john@email.com\",\r\n  \"password\": \"12345\",\r\n  \"phone\": \"12345\",\r\n  \"userStatus\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore3.swagger.io/api/v3/user/theUser",
+									"protocol": "https",
+									"host": [
+										"petstore3",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"api",
+										"v3",
+										"user",
+										"theUser"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 18:10:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 500,\n    \"message\": \"There was an error processing your request. It has been logged (ID: 9f17087bc8f124e3)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Deletar usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "api_key",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "12345671",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/theUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"theUser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response 500",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/user/theUser",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"theUser"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 02 May 2025 19:54:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PUT"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, api_key, Authorization"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Disposition"
+								},
+								{
+									"key": "Server",
+									"value": "Jetty(9.4.53.v20231009)"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 500,\n    \"message\": \"There was an error processing your request. It has been logged (ID: 906385801e934875)\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Operations about user",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
