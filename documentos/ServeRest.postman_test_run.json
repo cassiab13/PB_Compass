@@ -1,0 +1,311 @@
+{
+	"id": "d740ff45-ad47-414d-a012-5055fad80a6d",
+	"name": "ServeRest",
+	"timestamp": "2025-05-04T09:40:59.116Z",
+	"collection_id": "26719194-145a2b6e-07be-438b-ae8f-a109b43f8088",
+	"folder_id": 0,
+	"environment_id": "26719194-80352194-0c37-4d5a-88f6-313f23e47b09",
+	"totalPass": 19,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-05-04T09:40:56.886Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "a58dbb9e-3e30-4d8c-add7-26149044d85f",
+			"name": "CreateUser",
+			"url": "/usuarios",
+			"time": 178,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Should return field _id": true,
+				"Should return message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Should return field _id": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Should return message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				178
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Should return field _id": true,
+					"Should return message": true
+				}
+			]
+		},
+		{
+			"id": "09c60bcb-c1f4-4d3a-8034-e64ef873d83c",
+			"name": "FindById",
+			"url": "https://serverest.dev/usuarios/LML5FbhyhCj9nKBJ",
+			"time": 170,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify status code and fields or message": true
+			},
+			"testPassFailCounts": {
+				"Verify status code and fields or message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				170
+			],
+			"allTests": [
+				{
+					"Verify status code and fields or message": true
+				}
+			]
+		},
+		{
+			"id": "b342194d-4124-418f-85dd-a05336c02f28",
+			"name": "FindAll",
+			"url": "https://serverest.dev/usuarios?administrador=true",
+			"time": 177,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Should return quantity": true,
+				"Should return a list": true,
+				"List is not empty": true,
+				"Field quantity is equal to users number": true,
+				"Verify if all users have name, email and _id": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Should return quantity": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Should return a list": {
+					"pass": 1,
+					"fail": 0
+				},
+				"List is not empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Field quantity is equal to users number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if all users have name, email and _id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				177
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Should return quantity": true,
+					"Should return a list": true,
+					"List is not empty": true,
+					"Field quantity is equal to users number": true,
+					"Verify if all users have name, email and _id": true
+				}
+			]
+		},
+		{
+			"id": "431f8f24-349f-48ca-9fa9-d47f8f6b4afa",
+			"name": "UpdateUser",
+			"url": "https://serverest.dev/usuarios/LML5FbhyhCj9nKBJ",
+			"time": 172,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 or 201": true,
+				"Response 200: Verify message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 or 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response 200: Verify message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				172
+			],
+			"allTests": [
+				{
+					"Status code is 200 or 201": true,
+					"Response 200: Verify message": true
+				}
+			]
+		},
+		{
+			"id": "10630ee5-d7a2-408b-b4e8-130c55089c02",
+			"name": "DeleteUser",
+			"url": "https://serverest.dev/usuarios/LML5FbhyhCj9nKBJ",
+			"time": 166,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Verify message": true,
+				"Usuário foi realmente excluído": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify message": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Usuário foi realmente excluído": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				166
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Verify message": true,
+					"Usuário foi realmente excluído": true
+				}
+			]
+		},
+		{
+			"id": "3b1b0862-5a79-41b8-9726-3898db94717a",
+			"name": "Login",
+			"url": "https://serverest.dev/login",
+			"time": 169,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Should return a Bearer Token": true
+			},
+			"testPassFailCounts": {
+				"Should return a Bearer Token": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				169
+			],
+			"allTests": [
+				{
+					"Should return a Bearer Token": true
+				}
+			]
+		},
+		{
+			"id": "4bafd3f7-2b43-4ba4-8b37-49cb8c794faa",
+			"name": "CreateProduct",
+			"url": "https://serverest.dev/produtos",
+			"time": 171,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201 (Produto criado) ou 400 (Produto duplicado)": true,
+				"Mensagem de sucesso": true,
+				"Retorna o _id do produto": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201 (Produto criado) ou 400 (Produto duplicado)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensagem de sucesso": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Retorna o _id do produto": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				171
+			],
+			"allTests": [
+				{
+					"Status code is 201 (Produto criado) ou 400 (Produto duplicado)": true,
+					"Mensagem de sucesso": true,
+					"Retorna o _id do produto": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1203,
+	"collection": {
+		"requests": [
+			{
+				"id": "a58dbb9e-3e30-4d8c-add7-26149044d85f",
+				"method": "POST"
+			},
+			{
+				"id": "09c60bcb-c1f4-4d3a-8034-e64ef873d83c",
+				"method": "GET"
+			},
+			{
+				"id": "b342194d-4124-418f-85dd-a05336c02f28",
+				"method": "GET"
+			},
+			{
+				"id": "431f8f24-349f-48ca-9fa9-d47f8f6b4afa",
+				"method": "PUT"
+			},
+			{
+				"id": "10630ee5-d7a2-408b-b4e8-130c55089c02",
+				"method": "DELETE"
+			},
+			{
+				"id": "3b1b0862-5a79-41b8-9726-3898db94717a",
+				"method": "POST"
+			},
+			{
+				"id": "4bafd3f7-2b43-4ba4-8b37-49cb8c794faa",
+				"method": "POST"
+			}
+		]
+	}
+}

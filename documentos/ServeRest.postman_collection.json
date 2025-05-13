@@ -1,0 +1,4552 @@
+{
+	"info": {
+		"_postman_id": "145a2b6e-07be-438b-ae8f-a109b43f8088",
+		"name": "ServeRest",
+		"description": "**O ServeRest é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.**\n\n**Não deixe de seguir o** [<b>autor do projeto</b>](https://github.com/PauloGoncalvesBH) **e deixar um star no repositório:** [<b>github.com/ServeRest/ServeRest</b>](https://github.com/ServeRest/ServeRest)\n\nEssa página documenta todas as rotas e como acessá-las. Para mais detalhes do ServeRest (como executar localmente utilizando Docker ou NPM, alterar timeout de autenticação, etc) acesse [o repositório do ServeRest](https://github.com/serverest/serverest).\n\nEstá utilizando Postman? Importe o [JSON do Swagger](https://raw.githubusercontent.com/ServeRest/ServeRest/trunk/docs/swagger.json) para ter acesso às collections.\n\nVai fazer teste de carga? Leia a seção '[Teste de Carga](https://github.com/ServeRest/ServeRest#teste-de-carga)'.\n\nMuito obrigado ♥ a todos que apoiam o projeto [financeiramente](https://opencollective.com/serverest#section-contributors) ou [com código, ideias e divulgação](https://github.com/ServeRest/ServeRest#contribuidores-), graças a vocês **mais de R$ 2000,00 foram doados para a ONG** [<b>Todas as letras</b>](https://todasasletras.org/) até o momento.\n\nO ServeRest possui um front, com status em beta, não deixe de conhecer: [front.serverest.dev](https://front.serverest.dev/).\n\nPrecisa de apoio? [Abra uma issue](https://github.com/ServeRest/ServeRest/issues) ou contate o mantenedor do projeto:\n\n[Paulo Gonçalves&nbsp;- Website](https://www.linkedin.com/in/paulo-goncalves/)EndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26719194"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "CreateUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return field _id\", function(){\r",
+											"    pm.expect(jsonData).to.have.property(\"_id\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Should return message\", function(){\r",
+											"    pm.expect(jsonData.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"});\r",
+											"\r",
+											"pm.environment.set(\"_id\", jsonData._id);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{nome}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/usuarios",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT001 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"ciclano@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "/usuarios",
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "ca36476ccbc022aa8baa70c77f8236ff;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Sat, 03 May 2025 09:58:11 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"sT7Gq3V1teLoNRi0\"\n}"
+								},
+								{
+									"name": "CT002 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"ciclano@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "882bf34eb572f6f4d9805d01e499c60e;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Sat, 03 May 2025 09:58:54 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "53"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Este email já está sendo usado\"\n}"
+								},
+								{
+									"name": "CT003 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Gmail da Silva\",\r\n  \"email\": \"teste@gmail.com\",\r\n  \"password\": \"teste2\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "e3a9b94ccd3aafc83ea80261f013c5ae;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Tue, 06 May 2025 19:57:31 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"dJM78dhVzXy5joHb\"\n}"
+								},
+								{
+									"name": "CT004 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Hotmail da Silva\",\r\n  \"email\": \"teste@hotmail.com\",\r\n  \"password\": \"teste2\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "4de6c83314e863798f1a744efab47419;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Tue, 06 May 2025 22:04:11 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"5nUMQGHviT2RijoF\"\n}"
+								},
+								{
+									"name": "CT005 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Hotmail da Silva\",\r\n  \"email\": \" testemail.com\",\r\n  \"password\": \"teste2\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "d57f62be9f29bec88415e54826583104;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Tue, 06 May 2025 22:13:42 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"email\": \"email deve ser um email válido\"\n}"
+								},
+								{
+									"name": "CT006 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Hotmail da Silva\",\r\n  \"email\": \"testemail@qa.com\",\r\n  \"password\": \"t\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "f61d2b1ff54e1bda3f43902d91ca2455;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Tue, 06 May 2025 22:17:47 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"cDx6S0bTVD71mwNe\"\n}"
+								},
+								{
+									"name": "CT007 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Ciclano\",\r\n  \"email\": \"testemail1@qa.com\",\r\n  \"password\": \"01234567890123\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "21db895ba9cf7c55ba17f8477699fce4;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Tue, 06 May 2025 22:46:04 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"dWDLpjdea0Wk9EV2\"\n}"
+								},
+								{
+									"name": "CT016 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"testemail2@qa.com\",\r\n  \"password\": \"012345678\",\r\n  \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "c1620a8fd2b412faa863de84f22ed2ea;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:57:00 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"email\": \"email é obrigatório\"\n}"
+								},
+								{
+									"name": "CT017 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Ciclano\",\r\n  \"email\": \"testemail45@qa.com\",\r\n  \"password\": \"012345678\",\r\n  \"administrador\": \"false\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "9b6f42f36ed8658974f6a651fa98a21c"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 17:02:15 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"4a44Tj9BuIf2xvk5\"\n}"
+								},
+								{
+									"name": "CT018 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Ciclano\",\r\n  \"email\": \"testemail2@qa.com\",\r\n  \"password\": \"012345678\",\r\n  \"administrador\": \"true\",\r\n  \"adicional\": \"um campo qualquer\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "d73f28e559fa97e93c207fb7f0e9ecb2;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 17:05:11 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"adicional\": \"adicional não é permitido\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "FindAll",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return quantity\", function(){\r",
+											"    pm.expect(Number.isInteger(jsonData.quantidade)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Should return a list\", function(){\r",
+											"    pm.expect(Array.isArray(jsonData.usuarios)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"List is not empty\", function(){\r",
+											"    pm.expect(jsonData.usuarios.length).to.be.above(0);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Field quantity is equal to users number\", function(){\r",
+											"    pm.expect(jsonData.quantidade).to.eql(jsonData.usuarios.length);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Verify if all users have name, email and _id\", function(){\r",
+											"    jsonData.usuarios.forEach(usuario => {\r",
+											"        pm.expect(usuario).to.have.property(\"nome\");\r",
+											"        pm.expect(usuario).to.have.property(\"email\");\r",
+											"        pm.expect(usuario).to.have.property(\"_id\");\r",
+											"    });\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/usuarios",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "{{_id}}",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Fulano da Silva",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "fulano@qa.com",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "teste",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "administrador",
+											"value": "false",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT011 - Response 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "/usuarios",
+											"path": [
+												"usuarios"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "",
+													"disabled": true
+												},
+												{
+													"key": "nome",
+													"value": "Fulano da Silva",
+													"disabled": true
+												},
+												{
+													"key": "email",
+													"value": "fulano@qa.com",
+													"disabled": true
+												},
+												{
+													"key": "password",
+													"value": "teste",
+													"disabled": true
+												},
+												{
+													"key": "administrador",
+													"value": "true",
+													"disabled": true
+												},
+												{
+													"key": "administrador",
+													"value": "false",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "54bfc0075eef703703ad0e95cf8ccea0;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:40:23 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "3276"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"quantidade\": 15,\n    \"usuarios\": [\n        {\n            \"nome\": \"Fulano da Silva\",\n            \"email\": \"fulano@qa.com\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"0uxuPY0cbmQhpEz1\"\n        },\n        {\n            \"nome\": \"Karen QA\",\n            \"email\": \"karen_testee_{{randomInt}}@qa.com.br\",\n            \"password\": \"123456\",\n            \"administrador\": \"true\",\n            \"_id\": \"4jvJEa11CEz1iEEc\"\n        },\n        {\n            \"nome\": \"Jorge Bashirian\",\n            \"email\": \"testuser@yahoo.com\",\n            \"password\": \"SenhaForte\",\n            \"administrador\": \"false\",\n            \"_id\": \"5XUIxCt40zBMJtxY\"\n        },\n        {\n            \"nome\": \"Fulanim da Silva\",\n            \"email\": \"seialasd@mflaikds.com\",\n            \"password\": \"tesaste\",\n            \"administrador\": \"true\",\n            \"_id\": \"86e3CrPkNpqGWlkQ\"\n        },\n        {\n            \"nome\": \"Fulano da Silva\",\n            \"email\": \"beltrano@a.com.br\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"BoHLUBDTh5Gq4PN2\"\n        },\n        {\n            \"nome\": \"John Smitha\",\n            \"email\": \"johnsmitah@qa.com.br\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"HRyMm82uWb4bPIAS\"\n        },\n        {\n            \"nome\": \"Fulano da Silva\",\n            \"email\": \"beltrano@qa.com.br\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"IAYQPzE6FRqlFqAY\"\n        },\n        {\n            \"nome\": \"Karen QA\",\n            \"email\": \"karen_teste_{{randomInt}}@qa.com.br\",\n            \"password\": \"123456\",\n            \"administrador\": \"true\",\n            \"_id\": \"MWXdoncIV7EEXoeL\"\n        },\n        {\n            \"nome\": \"Senha Longa\",\n            \"email\": \"senha_l{{randomInt}}@qa.com.br\",\n            \"password\": \"12345678910\",\n            \"administrador\": \"false\",\n            \"_id\": \"TGZILOaQH9YVwtzv\"\n        },\n        {\n            \"nome\": \"nometeste01\",\n            \"email\": \"nometeste@teste.com.br\",\n            \"password\": \"teste01\",\n            \"administrador\": \"true\",\n            \"_id\": \"UHvkEmt4cAFGfR9f\"\n        },\n        {\n            \"nome\": \"Herman Runolfsson\",\n            \"email\": \"testadmin@yahoo.com\",\n            \"password\": \"SenhaForte2\",\n            \"administrador\": \"true\",\n            \"_id\": \"XOxVkupvWI2o0khu\"\n        },\n        {\n            \"nome\": \"Fulano novo\",\n            \"email\": \"fulano77@qa.com.br\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"eDCPadQDOSARvl0a\"\n        },\n        {\n            \"nome\": \"Fulano da Silva\",\n            \"email\": \"beltrano@gmail.com\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"euHB2Xmo7T5wNyzo\"\n        },\n        {\n            \"nome\": \"Cicrano das Silvas\",\n            \"email\": \"bciaisnano@qa.com.br\",\n            \"password\": \"teste\",\n            \"administrador\": \"true\",\n            \"_id\": \"lUoDkyqO1Quf6WBP\"\n        },\n        {\n            \"nome\": \"Nina Heidenreich\",\n            \"email\": \"testuserlm@yahoo.com\",\n            \"password\": \"SenhaForte\",\n            \"administrador\": \"false\",\n            \"_id\": \"yuM9qfQJYU4mLI5B\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "FindById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Verify status code and fields or message\", function () {\r",
+											"    if(pm.response.code === 200){\r",
+											"        pm.expect(jsonData).to.have.property(\"nome\");\r",
+											"        pm.expect(jsonData).to.have.property(\"email\");\r",
+											"        pm.expect(jsonData).to.have.property(\"password\");\r",
+											"        pm.expect(jsonData).to.have.property(\"administrador\");\r",
+											"        pm.expect(jsonData).to.have.property(\"_id\");\r",
+											"    }\r",
+											"    else if(pm.response.code === 400 || pm.response.code === 404){\r",
+											"        pm.expect(jsonData.message).to.be.eql(\"Usuário não encontrado\")};\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/usuarios/{{_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"usuarios",
+										"{{_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT012 - Response 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "/usuarios/",
+											"path": [
+												"usuarios",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "bb44acd41afd9879cc4d3db0aa67703f"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:46:56 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "148"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"nome\": \"Ciclano\",\n    \"email\": \"testemail3@qa.com\",\n    \"password\": \"012345678\",\n    \"administrador\": \"true\",\n    \"_id\": \"1ssXKdNNh9eeQze1\"\n}"
+								},
+								{
+									"name": "CT013 - Response 400",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/usuarios/12345a789de23erg",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios",
+												"12345a789de23erg"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "d912afd332b3b161e44f6073ca2f032c"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:49:10 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Usuário não encontrado\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"item": [
+						{
+							"name": "UpdateUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 or 201\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+											"});\r",
+											"\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"if(pm.response.code == 200){\r",
+											"    pm.test(\"Response 200: Verify message\", function(){\r",
+											"        pm.expect(jsonData.message).to.eql(\"Registro alterado com sucesso\");\r",
+											"    })\r",
+											"}\r",
+											"if(pm.response.code == 201){\r",
+											"    pm.test(\"Response 201: Verify message\", function(){\r",
+											"        pm.expect(jsonData.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"    });\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Ciclano novo\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/usuarios/{{_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"usuarios",
+										"{{_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT008 - Response 200",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nome\": \"Fulano novo\",\r\n    \"email\": \"fulano16@qa.com.br\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "/usuarios/",
+											"path": [
+												"usuarios",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "426268280a9da00f6e1e2e862a42c4a8;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Tue, 06 May 2025 22:42:31 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Registro alterado com sucesso\"\n}"
+								},
+								{
+									"name": "CT009 - Response 201",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nome\": \"Fulano novo\",\r\n    \"email\": \"fulano77@qa.com.br\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios/8dadrewqr",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios",
+												"8dadrewqr"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "d702d7042c3b7077c9c3ce811515e82e;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:33:33 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"eDCPadQDOSARvl0a\"\n}"
+								},
+								{
+									"name": "CT010 - Response 400",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nome\": \"Fulano modificado\",\r\n    \"email\": \"fulano77@qa.com.br\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"false\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/usuarios/8dadrewqr",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios",
+												"8dadrewqr"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "829a5b31f2ba79a7101b78a1301a2fbd;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:37:58 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "53"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Este email já está sendo usado\"\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 100000);\r",
+									"\r",
+									"let randomEmail = `usuario_${randomNumber}@teste.com`;\r",
+									"\r",
+									"pm.environment.set(\"email\", randomEmail);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "DeleteUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Verify message\", function(){\r",
+											"    pm.expect(jsonData.message).is.eql(\"Registro excluído com sucesso\");\r",
+											"});\r",
+											"\r",
+											"let url = pm.environment.get(\"url\");\r",
+											"let id = pm.collectionVariables.get(\"_id\");\r",
+											"\r",
+											"console.log(\"Url\", url);\r",
+											"console.log(\"Id\", id);\r",
+											"\r",
+											"pm.sendRequest({\r",
+											"    url: `${url}/usuarios/${id}`,\r",
+											"    method: 'GET'\r",
+											"}, function (err, res) {\r",
+											"    if (err) {\r",
+											"        console.error(\"Erro na requisição GET:\", err);\r",
+											"        return;\r",
+											"    }\r",
+											"\r",
+											"pm.test(\"Usuário foi realmente excluído\", function () {\r",
+											"        pm.expect(res.code).to.eql(400); \r",
+											"        let body = res.json();\r",
+											"        pm.expect(body.message).to.include(\"Usuário não encontrado\");\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/usuarios/{{_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"usuarios",
+										"{{_id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT014 - Response 200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "/usuarios/",
+											"path": [
+												"usuarios",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "63b26b652c7e32152f155fc945139719;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:52:36 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Registro excluído com sucesso\"\n}"
+								},
+								{
+									"name": "CT015 - Response 400",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/usuarios/12345a789de23erg",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"usuarios",
+												"12345a789de23erg"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "0db3a32e793b9e5587971d6753b9e23d;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 16:54:11 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "45"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Usuário não encontrado\"\n}"
+								}
+							]
+						}
+					]
+				}
+			],
+			"description": "Rota de usuários\n\nGerencia usuários\n\nConsulta dados para login\n\nCadastra administrador\n\nPermite a exclusão de usuário",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"let randomNumber = Math.floor(Math.random() * 100000);\r",
+							"\r",
+							"let randomEmail = `usuario_${randomNumber}@teste.com`;\r",
+							"pm.environment.set(\"email\", randomEmail);\r",
+							"\r",
+							"let randomName = `usuario${randomNumber}`;\r",
+							"pm.environment.set(\"nome\", randomName);\r",
+							"\r",
+							"let randomPassword = `${randomNumber}`;\r",
+							"pm.environment.set(\"password\", randomPassword);\r",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "CriarUserParaLogin",
+					"item": [
+						{
+							"name": "CriarUsuarioParaLogin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{nome}}\",\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\",\r\n  \"administrador\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/usuarios",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 100000);\r",
+									"\r",
+									"let randomEmail = `usuario_${randomNumber}@teste.com`;\r",
+									"pm.environment.set(\"email\", randomEmail);\r",
+									"\r",
+									"let randomName = `usuario${randomNumber}`;\r",
+									"pm.environment.set(\"nome\", randomName);\r",
+									"\r",
+									"let randomPassword = `${randomNumber}`;\r",
+									"pm.environment.set(\"password\", randomPassword);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return a Bearer Token\", function(){\r",
+											"    pm.expect(jsonData.authorization).to.be.a(\"string\");\r",
+											"    pm.expect(jsonData.authorization).to.include(\"Bearer \");\r",
+											"});\r",
+											"\r",
+											"console.log(jsonData.authorization);\r",
+											"\r",
+											"let token = jsonData.authorization.replace(\"Bearer \",\"\");\r",
+											"\r",
+											"pm.environment.set(\"authToken\", token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT020 - Response 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"fulano@qa.com\",\r\n  \"password\": \"teste\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "cf9aacba6926d082b8e6b86d8e467d21;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:04:55 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "265"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Login realizado com sucesso\",\n    \"authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzQ2NjQxMDk1LCJleHAiOjE3NDY2NDE2OTV9.knbzn3JKYSLrX5e25qb97wrsmeA3eGP8pA0VNW9_fFk\"\n}"
+								},
+								{
+									"name": "CT021 - Response 401",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"inexistente@qa.com\",\r\n  \"password\": \"senha\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "bf3bb02278550f8c38a0c1dfb8c5cd67;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:02:04 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "48"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Email e/ou senha inválidos\"\n}"
+								},
+								{
+									"name": "CT022 - Response 401",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"fulano@qa.com\",\r\n  \"password\": \"senha\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "40bfd4dfdf7e9c80ad511c9ca9a8d412;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:06:25 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "48"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Email e/ou senha inválidos\"\n}"
+								},
+								{
+									"name": "CT023 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"fulanoqa.com\",\r\n  \"password\": \"teste\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "198668fa7567a949413eb22a08bcd9f0"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:07:59 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"email\": \"email deve ser um email válido\"\n}"
+								},
+								{
+									"name": "CT024 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \r\n  \"password\": \"teste\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "c68993038e74e0e66a47878a335a2c50;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:15:25 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"email\": \"email é obrigatório\"\n}"
+								},
+								{
+									"name": "CT025 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "d69a29654b2bcd8c05476ce6a4f4a103;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 23:33:24 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "84"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"email\": \"email é obrigatório\",\n    \"password\": \"password é obrigatório\"\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"description": "Autenticação de usuário e de administrador\n\nUsuário -> carrinho\n\nAdministrador -> produto",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "CreateProduct",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 201 (Produto criado) ou 400 (Produto duplicado)\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([201, 400]);\r",
+											"});\r",
+											"\r",
+											"if (pm.response.code === 201) {\r",
+											"    pm.test(\"Mensagem de sucesso\", function () {\r",
+											"        pm.expect(jsonData.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"    });\r",
+											"\r",
+											"    pm.test(\"Retorna o _id do produto\", function () {\r",
+											"        pm.expect(jsonData).to.have.property(\"_id\");\r",
+											"        pm.environment.set(\"_idProduct\", jsonData._id);\r",
+											"        console.log(\"Produto criado com ID:\", jsonData._id);\r",
+											"    });\r",
+											"\r",
+											"} else if (pm.response.code === 400) {\r",
+											"    pm.test(\"Mensagem de erro para produto duplicado\", function () {\r",
+											"        pm.expect(jsonData.message).to.eql(\"Já existe produto com esse nome\");\r",
+											"    });\r",
+											"}\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"{{productName}}\",\r\n  \"preco\": 520,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/produtos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT028 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Logitech XP Vertical\",\r\n  \"preco\": 520,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "46b4538504e2851deb7dd67dfaf2cbb3;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:44:42 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"4a8SALcBaQJNpUPi\"\n}"
+								},
+								{
+									"name": "CT029 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Logitech XP Vertical\",\r\n  \"preco\": 480,\r\n  \"descricao\": \"Teclado\",\r\n  \"quantidade\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "b7c0ae96f94014df759a3389eb749b59;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:47:19 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "53"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Já existe produto com esse nome\"\n}"
+								},
+								{
+									"name": "CT030 - Response 401",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"nome\": \"Logitech XP Vertical\",\r\n  \"preco\": 520,\r\n  \"descricao\": \"Mouse\",\r\n  \"quantidade\": 3\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "22bf04faa2305409bc5c66347d7cb9a8;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:28:28 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "103"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+								},
+								{
+									"name": "CT031 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"preco\": 480,\r\n  \"descricao\": \"Teclado\",\r\n  \"quantidade\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "7bd8f80b933ab584dbe0bf3049278d47;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:50:42 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "38"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"nome\": \"nome é obrigatório\"\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{authToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "FindAllProducts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return quantity\", function(){\r",
+											"    pm.expect(Number.isInteger(jsonData.quantidade)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Should return a list\", function(){\r",
+											"    pm.expect(Array.isArray(jsonData.produtos)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"List is not empty\", function(){\r",
+											"    pm.expect(jsonData.produtos.length).to.be.above(0);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Field quantity is equal to products number\", function(){\r",
+											"    pm.expect(jsonData.quantidade).to.eql(jsonData.produtos.length);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Verify if all products have name, price, description, quantity and _id\", function(){\r",
+											"    jsonData.produtos.forEach(produto => {\r",
+											"        pm.expect(produto).to.have.property(\"nome\");\r",
+											"        pm.expect(produto).to.have.property(\"preco\");\r",
+											"        pm.expect(produto).to.have.property(\"descricao\");\r",
+											"        pm.expect(produto).to.have.property(\"quantidade\");\r",
+											"        pm.expect(produto).to.have.property(\"_id\");\r",
+											"    });\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/produtos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "{{_idProduct}}",
+											"disabled": true
+										},
+										{
+											"key": "nome",
+											"value": "Logitech",
+											"disabled": true
+										},
+										{
+											"key": "preco",
+											"value": "520",
+											"disabled": true
+										},
+										{
+											"key": "descricao",
+											"value": "Mouse",
+											"disabled": true
+										},
+										{
+											"key": "quantidade",
+											"value": "3",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT038 - Response 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "{{_idProduct}}",
+													"disabled": true
+												},
+												{
+													"key": "nome",
+													"value": "Logitech",
+													"disabled": true
+												},
+												{
+													"key": "preco",
+													"value": "520",
+													"disabled": true
+												},
+												{
+													"key": "descricao",
+													"value": "Mouse",
+													"disabled": true
+												},
+												{
+													"key": "quantidade",
+													"value": "3",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "eae0edaeb8cf2c6723893284aa361e4c;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:39:55 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "5361"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"quantidade\": 27,\n    \"produtos\": [\n        {\n            \"nome\": \"Mayotte\",\n            \"preco\": 60,\n            \"descricao\": \"Teclado Gamer\",\n            \"quantidade\": 4,\n            \"_id\": \"01V4aKLj3Ifr8nFC\"\n        },\n        {\n            \"nome\": \"novoproduto01\",\n            \"preco\": 150,\n            \"descricao\": \"produtonov01\",\n            \"quantidade\": 250,\n            \"_id\": \"0hFjN2HFbieNASux\"\n        },\n        {\n            \"nome\": \"novo produto\",\n            \"preco\": 100,\n            \"descricao\": \"produto novo\",\n            \"quantidade\": 199,\n            \"_id\": \"0uzosXNY1W0lRAGf\"\n        },\n        {\n            \"nome\": \"Awesome Concrete Chicken\",\n            \"preco\": 8000,\n            \"descricao\": \"Handmade\",\n            \"quantidade\": 990,\n            \"_id\": \"218CclfchoRS1nXh\"\n        },\n        {\n            \"nome\": \"Ergonomic Cotton Pizza\",\n            \"preco\": 8000,\n            \"descricao\": \"Gorgeous\",\n            \"quantidade\": 999,\n            \"_id\": \"41pU3WyXmgbuEi13\"\n        },\n        {\n            \"nome\": \"Tasty Granite Sausages\",\n            \"preco\": 8000,\n            \"descricao\": \"Intelligent\",\n            \"quantidade\": 996,\n            \"_id\": \"4fMkW19QDgnFLHzg\"\n        },\n        {\n            \"nome\": \"Handmade Frozen Keyboard\",\n            \"preco\": 8000,\n            \"descricao\": \"Practical\",\n            \"quantidade\": 990,\n            \"_id\": \"6RkHbUUnglsCmKkd\"\n        },\n        {\n            \"nome\": \"Produto Batman 1746636301\",\n            \"preco\": 199,\n            \"descricao\": \"Produto de teste automatizado\",\n            \"quantidade\": 9,\n            \"_id\": \"7PdiabxopplooPAE\"\n        },\n        {\n            \"nome\": \"Sleek Frozen Keyboard\",\n            \"preco\": 8000,\n            \"descricao\": \"Intelligent\",\n            \"quantidade\": 999,\n            \"_id\": \"8Fy7ssm6fZhqg4ZL\"\n        },\n        {\n            \"nome\": \"novoproduto02\",\n            \"preco\": 150,\n            \"descricao\": \"produtonov02\",\n            \"quantidade\": 250,\n            \"_id\": \"Aagmj6yyXWBMspfP\"\n        },\n        {\n            \"nome\": \"Logitech MX Vertical\",\n            \"preco\": 470,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"BeeJh5lz3k6kSIzA\"\n        },\n        {\n            \"nome\": \"Handmade Soft Bacon\",\n            \"preco\": 8000,\n            \"descricao\": \"Unbranded\",\n            \"quantidade\": 999,\n            \"_id\": \"C4ZRIVdqMhzcMz6e\"\n        },\n        {\n            \"nome\": \"Ergonomic Soft Salad\",\n            \"preco\": 8000,\n            \"descricao\": \"Intelligent\",\n            \"quantidade\": 999,\n            \"_id\": \"D0FMIfvJEefpJ95J\"\n        },\n        {\n            \"nome\": \"Practical Metal Tuna\",\n            \"preco\": 8000,\n            \"descricao\": \"Fantastic\",\n            \"quantidade\": 999,\n            \"_id\": \"DE4l83fJj7BQbOGt\"\n        },\n        {\n            \"nome\": \"Gorgeous Soft Table\",\n            \"preco\": 8000,\n            \"descricao\": \"Refined\",\n            \"quantidade\": 990,\n            \"_id\": \"DlIn24dKpFyDXMzY\"\n        },\n        {\n            \"nome\": \"Ergonomic Steel Pizza\",\n            \"preco\": 8000,\n            \"descricao\": \"Gorgeous\",\n            \"quantidade\": 990,\n            \"_id\": \"GDkY3mTNRrmjKl9e\"\n        },\n        {\n            \"nome\": \"Samsung 60 polegadas\",\n            \"preco\": 5240,\n            \"descricao\": \"TV\",\n            \"quantidade\": 49974,\n            \"_id\": \"K6leHdftCeOJj8BJ\"\n        },\n        {\n            \"nome\": \"Fantastic Frozen Tuna\",\n            \"preco\": 8000,\n            \"descricao\": \"Small\",\n            \"quantidade\": 990,\n            \"_id\": \"MBB4NmjXYfrSktZq\"\n        },\n        {\n            \"nome\": \"mouse\",\n            \"preco\": 400,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"jGTReyH2v3NvogLs\"\n        },\n        {\n            \"nome\": \"Produto Batman 1746636541\",\n            \"preco\": 100,\n            \"descricao\": \"Produto teste\",\n            \"quantidade\": 10,\n            \"_id\": \"jlJDXc4SRVfNcuNg\"\n        },\n        {\n            \"nome\": \"Logitech Vertical\",\n            \"preco\": 200,\n            \"descricao\": \"Teclado\",\n            \"quantidade\": 2,\n            \"_id\": \"mEsC5cJTK23nKRq9\"\n        },\n        {\n            \"nome\": \"Logitech XP Vertical\",\n            \"preco\": 520,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 3,\n            \"_id\": \"owJab6IjYgmWlhNg\"\n        },\n        {\n            \"nome\": \"Sleek Wooden Hat\",\n            \"preco\": 8000,\n            \"descricao\": \"Ergonomic\",\n            \"quantidade\": 990,\n            \"_id\": \"q9UUJ8LF03Xkm3Cd\"\n        },\n        {\n            \"nome\": \"Fantastic Rubber Computer\",\n            \"preco\": 8000,\n            \"descricao\": \"Sleek\",\n            \"quantidade\": 999,\n            \"_id\": \"rPutSP1Y0bMS97z2\"\n        },\n        {\n            \"nome\": \"produtoteste\",\n            \"preco\": 100,\n            \"descricao\": \"produtoteste\",\n            \"quantidade\": 200,\n            \"_id\": \"s8YOaJUWmnSVigW0\"\n        },\n        {\n            \"nome\": \"Sleek Metal Shoes\",\n            \"preco\": 8000,\n            \"descricao\": \"Licensed\",\n            \"quantidade\": 990,\n            \"_id\": \"slG81y3xkb0pEw9a\"\n        },\n        {\n            \"nome\": \"Thailand\",\n            \"preco\": 60,\n            \"descricao\": \"Teclado Gamer\",\n            \"quantidade\": 4,\n            \"_id\": \"tF8Qg8wlHTzMgzmH\"\n        }\n    ]\n}"
+								},
+								{
+									"name": "CT041 - Response 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "{{_idProduct}}",
+													"disabled": true
+												},
+												{
+													"key": "nome",
+													"value": "Logitech",
+													"disabled": true
+												},
+												{
+													"key": "preco",
+													"value": "520",
+													"disabled": true
+												},
+												{
+													"key": "descricao",
+													"value": "Mouse",
+													"disabled": true
+												},
+												{
+													"key": "quantidade",
+													"value": "3",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "64d97f720da604225c8dad8a19f674c0"
+										},
+										{
+											"key": "date",
+											"value": "Thu, 08 May 2025 18:34:30 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2942"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"quantidade\": 15,\n    \"produtos\": [\n        {\n            \"nome\": \"Logitech XMax\",\n            \"preco\": 520,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 3,\n            \"_id\": \"7IPVDhKPil7ZAPGg\"\n        },\n        {\n            \"nome\": \"Novo Produto 1746725364510\",\n            \"preco\": 100,\n            \"descricao\": \"Teste\",\n            \"quantidade\": 10,\n            \"_id\": \"7pMiiBd0M1N3kPtY\"\n        },\n        {\n            \"nome\": \"Logitech MX Vertical\",\n            \"preco\": 470,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"BeeJh5lz3k6kSIzA\"\n        },\n        {\n            \"nome\": \"Logitech\",\n            \"preco\": 520,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 3,\n            \"_id\": \"EgZ9CHP0VvnPS2RX\"\n        },\n        {\n            \"nome\": \"Greenland\",\n            \"preco\": 60,\n            \"descricao\": \"Teclado Gamer\",\n            \"quantidade\": 4,\n            \"_id\": \"EzZScwZhcgm2B0Lq\"\n        },\n        {\n            \"nome\": \"Produto 1746725364510\",\n            \"preco\": 100,\n            \"descricao\": \"Teste\",\n            \"quantidade\": 10,\n            \"_id\": \"JCEO3fVkhnlPkcrA\"\n        },\n        {\n            \"nome\": \"Logitech M Vertical\",\n            \"preco\": 470,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"K6leHdftCeOJj8BJ\"\n        },\n        {\n            \"nome\": \"Handcrafted Wooden Chair\",\n            \"preco\": 8000,\n            \"descricao\": \"Generic\",\n            \"quantidade\": 990,\n            \"_id\": \"N8S1TsVRJjDPnvHq\"\n        },\n        {\n            \"nome\": \"Intelligent Soft Computer\",\n            \"preco\": 8000,\n            \"descricao\": \"Sleek\",\n            \"quantidade\": 999,\n            \"_id\": \"NU8q2ey4Pvr13Yk8\"\n        },\n        {\n            \"nome\": \"United States Minor Outlying Islands\",\n            \"preco\": 60,\n            \"descricao\": \"Teclado Gamer\",\n            \"quantidade\": 4,\n            \"_id\": \"RnGYQo99RWitV66E\"\n        },\n        {\n            \"nome\": \"Logitech MX Vertical V2\",\n            \"preco\": 470,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"SjEVhc3RolagUFnq\"\n        },\n        {\n            \"nome\": \"00000j\",\n            \"preco\": 400,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"YgPSGz20bMaX83Wy\"\n        },\n        {\n            \"nome\": \"MX Vertical\",\n            \"preco\": 470,\n            \"descricao\": \"Mouse\",\n            \"quantidade\": 381,\n            \"_id\": \"bhfgTUfqiXjzgmHZ\"\n        },\n        {\n            \"nome\": \"Produto Não-Admin 1746725364510\",\n            \"preco\": 100,\n            \"descricao\": \"Teste\",\n            \"quantidade\": 10,\n            \"_id\": \"ejQHf8nZZlgE32s6\"\n        },\n        {\n            \"nome\": \"carrinho\",\n            \"preco\": 22,\n            \"descricao\": \"nada\",\n            \"quantidade\": 3,\n            \"_id\": \"wuHTrHpZnjCXJrNh\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "FindProductById",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code is 200 (Produto encontrado) or 400 (Produto não encontrado)\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
+											"});\r",
+											"\r",
+											"if (pm.response.code === 200) {\r",
+											"   \r",
+											"    pm.test(\"Verify product\", function () {\r",
+											"        pm.expect(jsonData).to.have.property(\"nome\");\r",
+											"        pm.expect(jsonData).to.have.property(\"preco\");\r",
+											"        pm.expect(jsonData).to.have.property(\"descricao\");\r",
+											"        pm.expect(jsonData).to.have.property(\"quantidade\");\r",
+											"        pm.expect(jsonData).to.have.property(\"_id\");\r",
+											"    });\r",
+											"\r",
+											"} else if (pm.response.code === 400) {\r",
+											"    pm.test(\"Product not found\", function () {\r",
+											"        pm.expect(jsonData.message).to.eql(\"Produto não encontrado\");\r",
+											"    });\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/produtos/{{_idProduct}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos",
+										"{{_idProduct}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT039 - Response 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos/{{_idProduct}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"{{_idProduct}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "1867d13fba39b12655a7307fcea65658;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:43:54 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "134"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"nome\": \"Logitech XP Vertical\",\n    \"preco\": 520,\n    \"descricao\": \"Mouse\",\n    \"quantidade\": 3,\n    \"_id\": \"owJab6IjYgmWlhNg\"\n}"
+								},
+								{
+									"name": "CT040 - Response 400",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos/123sdfeawrw35ewr",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"123sdfeawrw35ewr"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "970aff0763358eaf3fcffe0cce1f0727;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:45:13 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "44"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Produto não encontrado\"\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"const baseUrl = pm.environment.get(\"url\");\r",
+									"\r",
+									"pm.sendRequest({\r",
+									"    url: `${baseUrl}/login`,\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({\r",
+									"            email: 'fulano@qa.com',\r",
+									"            password: 'teste'\r",
+									"        })\r",
+									"    }\r",
+									"}, function (err, res) {\r",
+									"    if (err) {\r",
+									"        console.error(\"Erro ao efetuar login:\", err);\r",
+									"    } else {\r",
+									"        let jsonData = res.json();\r",
+									"\r",
+									"        let token = jsonData.authorization?.replace(\"Bearer \", \"\");\r",
+									"\r",
+									"        if (token) {\r",
+									"            pm.collectionVariables.set(\"token\", token);\r",
+									"            \r",
+									"            setTimeout(() => {\r",
+									"                pm.sendRequest({\r",
+									"                    url: `${baseUrl}/produtos`,\r",
+									"                    method: 'POST',\r",
+									"                    header: {\r",
+									"                        'Authorization': `Bearer ${token}`,\r",
+									"                        'Content-Type': 'application/json'\r",
+									"                    },\r",
+									"                    body: {\r",
+									"                        mode: 'raw',\r",
+									"                        raw: JSON.stringify({\r",
+									"                            nome: \"Logitech\",\r",
+									"                            preco: 520,\r",
+									"                            descricao: \"Mouse\",\r",
+									"                            quantidade: 3\r",
+									"                        })\r",
+									"                    }\r",
+									"                }, function (err, res) {\r",
+									"                    if (err) {\r",
+									"                        console.error(\"Erro ao criar produto:\", err);\r",
+									"                    } else {\r",
+									"                        console.log(\"Produto criado com sucesso:\", res.json());\r",
+									"                    }\r",
+									"                });\r",
+									"            }, 600);\r",
+									"        } else {\r",
+									"            console.error(\"Token não foi gerado. Verifique as credenciais.\");\r",
+									"        }\r",
+									"    }\r",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Put",
+					"item": [
+						{
+							"name": "UpdateProduct",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200 or 201\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+											"});\r",
+											"\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"if(pm.response.code == 200){\r",
+											"    pm.test(\"Response 200: Verify message\", function(){\r",
+											"        pm.expect(jsonData.message).to.eql(\"Registro alterado com sucesso\");\r",
+											"    })\r",
+											"}\r",
+											"if(pm.response.code == 201){\r",
+											"    pm.test(\"Response 201: Verify message\", function(){\r",
+											"        pm.expect(jsonData.message).to.eql(\"Cadastro realizado com sucesso\");\r",
+											"    });\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"{{productName}}\",\r\n    \"preco\": 200,\r\n    \"descricao\": \"Teclado\",\r\n    \"quantidade\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/produtos/se12e56erwerq456",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos",
+										"se12e56erwerq456"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT032 - Response 201",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nome\": \"Logitech Vertical\",\r\n    \"preco\": 200,\r\n    \"descricao\": \"Teclado\",\r\n    \"quantidade\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos/se12e56erwerq456",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"se12e56erwerq456"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "c50181cb6eb3b0d64d9bb7dd9d951a34"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 18:54:48 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"mEsC5cJTK23nKRq9\"\n}"
+								},
+								{
+									"name": "CT033 - Response 400",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nome\": \"Logitech\",\r\n    \"preco\": 520,\r\n    \"descricao\": \"Mouse\",\r\n    \"quantidade\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos/se12e56erwerq456",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"se12e56erwerq456"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "c2452d8b22276d1e66657241d15d6128;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:00:09 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "53"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Já existe produto com esse nome\"\n}"
+								},
+								{
+									"name": "CT034 - Response 401",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"nome\": \"Logitech\",\r\n    \"preco\": 520,\r\n    \"descricao\": \"Mouse\",\r\n    \"quantidade\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/produtos/se12e56erwerq456",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"se12e56erwerq456"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "d33f97a63a0de4fd56daa2e0a4d5bece;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:10:20 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "103"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{authToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									"let randomNumber = Math.floor(Math.random() * 100000);\r",
+									"\r",
+									"let randomProductName = `product_${randomNumber}`;\r",
+									"\r",
+									"pm.environment.set(\"productName\", randomProductName);\r",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "DeleteProduct",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/produtos/{{_idProduct}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos",
+										"{{_idProduct}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT035 - Response 200",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos/{{_idProduct}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"{{_idProduct}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "11cc1fb91e944c5b06a839eadab736fe;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:13:06 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "51"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Registro excluído com sucesso\"\n}"
+								},
+								{
+									"name": "CT036 - Response 400",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos/qjxBUCW1iXHSypjR",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"qjxBUCW1iXHSypjR"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "616423fe43646d746bde759f079c1d4d;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:25:22 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "135"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Não é permitido excluir produto que faz parte de carrinho\",\n    \"idCarrinhos\": [\n        \"2bfYNX6YtOPJJqYf\"\n    ]\n}"
+								},
+								{
+									"name": "CT037 - Response 401",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/produtos/{{_idProduct}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"produtos",
+												"{{_idProduct}}"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "038031c3830ef8f59d1bc373dedaf4ee;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 19:34:37 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "103"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{authToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"description": "Rota de Produtos\n\nPermite a consulta de produtos cadastrados\n\nComo administrador permite o gerenciamento dos produtos da loja",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"let randomNumber = Math.floor(Math.random() * 100000);\r",
+							"\r",
+							"let randomProductName = `product_${randomNumber}`;\r",
+							"\r",
+							"pm.environment.set(\"productName\", randomProductName);\r",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Carrinhos",
+			"item": [
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "CreateCart",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"{{_idProduct}}\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/carrinhos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "CT042 - Response 201",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"{{_idProduct}}\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/carrinhos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"carrinhos"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "f8f353737fb105e214185aab73f00c32;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Wed, 07 May 2025 20:07:23 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "82"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Cadastro realizado com sucesso\",\n    \"_id\": \"pO5fj0SenWmuu3Da\"\n}"
+								},
+								{
+									"name": "CT043 - Response 401",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"produtos\": [\r\n    {\r\n      \"idProduto\": \"123sdfwerqwerwer\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/carrinhos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"carrinhos"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "f88d012615ea451ecdbcf551a97acce4;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Thu, 08 May 2025 22:09:41 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "103"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+								},
+								{
+									"name": "CT044 - Response 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"produtos\": [\r\n    {\"idProduto\": \"ACB12345abc6kSIzA\",\r\n      \"quantidade\": 1\r\n    }]}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/carrinhos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"carrinhos"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "access-control-allow-origin",
+											"value": "*"
+										},
+										{
+											"key": "x-dns-prefetch-control",
+											"value": "off"
+										},
+										{
+											"key": "x-frame-options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "strict-transport-security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "x-download-options",
+											"value": "noopen"
+										},
+										{
+											"key": "x-content-type-options",
+											"value": "nosniff"
+										},
+										{
+											"key": "x-xss-protection",
+											"value": "1; mode=block"
+										},
+										{
+											"key": "content-type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-cloud-trace-context",
+											"value": "776e11ec699fcab19a986d22e0624273;o=1"
+										},
+										{
+											"key": "date",
+											"value": "Thu, 08 May 2025 22:25:09 GMT"
+										},
+										{
+											"key": "server",
+											"value": "Google Frontend"
+										},
+										{
+											"key": "Content-Length",
+											"value": "151"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Produto não encontrado\",\n    \"item\": {\n        \"idProduto\": \"ACB12345abc6kSIzA\",\n        \"quantidade\": 1,\n        \"index\": 0\n    }\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{authToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"item": [
+						{
+							"name": "FindAllCarts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/carrinhos?idUsuario={{_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"carrinhos"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "precoTotal",
+											"value": "520",
+											"disabled": true
+										},
+										{
+											"key": "quantidadeTotal",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "idUsuario",
+											"value": "{{_id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FindCartById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/carrinhos/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"carrinhos",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "DeleteCart",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/carrinhos/concluir-compra",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteCartAndReturnProducts",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/carrinhos/cancelar-compra",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"carrinhos",
+										"cancelar-compra"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{authToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"description": "Rota de Carrinhos\n\nPermite a consulta dos carrinhos cadastrados\n\nCadastro de carrinho\n\nExclusão de carrinho"
+		}
+	],
+	"variable": [
+		{
+			"key": "authToken",
+			"value": ""
+		},
+		{
+			"key": "_id",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
