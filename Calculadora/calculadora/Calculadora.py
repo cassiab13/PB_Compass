@@ -23,3 +23,16 @@ class Calculadora:
 
     def porcentagem(self, porcentagem, num):
         return (porcentagem/100)*num
+
+    def fatorial(self, num):
+        if isinstance(num, float):
+            raise ValueError("Náo é possível calcular fatorial de número decimal")
+        elif num < 0:
+            raise ValueError("Não é possível calcular fatorial de número negativo")
+        elif num ==0:
+            return 1
+        else:
+            fatorial = 1
+            for i in range(1, num+1):
+                fatorial *= i
+            return fatorial
