@@ -25,4 +25,7 @@ Facilitar o acompanhamento da evolução do projeto e manter a rastreabilidade d
 
 Este repositório será utilizado de forma contínua durante o programa, sendo o principal ponto de versionamento dos documentos do PB.
 
+## ⚓ Link para o Github do QAspirantes O Despertar da Main:
+[https://github.com/dxara10/QAspirants]
+
 
