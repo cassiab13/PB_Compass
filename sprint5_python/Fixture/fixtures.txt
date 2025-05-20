@@ -1,8 +1,0 @@
-Escopo das Fixtures
-
-Function: padrão. Criada e destruída para função de teste que a utilizar.
-Class: criada e destruída uma vez para cada instância de classe.
-    Todos os testes usam a mesma instância da fixture.
-Module: criada e destruída uma vez para cada módulo ou arquivo de teste.
-Package: criada e destruída uma vez para cada package.
-Session: toda a seção de testes compartilha a mesma fixture.
