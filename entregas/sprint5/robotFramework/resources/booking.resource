@@ -83,5 +83,5 @@ Deletar o booking criado
 
 Verificar se foi deletado
     [Arguments]    ${status_code_desejado}
-    Get Request    RestfulBooker    /booking/${booking_id}
+    Get On Session    RestfulBooker    /booking/${booking_id}    expected_status=any
     Status Should Be    ${status_code_desejado}
