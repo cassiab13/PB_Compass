@@ -16,6 +16,20 @@ Realizar o login como administrador
     
     Set Global Variable    ${token}    ${response.json()["token"]}
 
+Realizar login com credenciais inválidas
+    [Arguments]  ${status_code_desejado}
+    ${body}  Create Dictionary
+    ...      username=admin
+    ...      password=senha_errada
+
+    ${response}  POST On Session
+    ...          alias=RestfulBooker
+    ...          url=/auth
+    ...          json=${body}
+    ...          expected_status=${status_code_desejado}
+    
+    Set Global Variable    ${token}    ${response.json()["token"]}
+
 Verificar se token foi gerado
     Should Not Be Empty    ${token}
     Log To Console    ${token}

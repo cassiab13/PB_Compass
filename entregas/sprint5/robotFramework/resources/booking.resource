@@ -85,3 +85,17 @@ Verificar se foi deletado
     [Arguments]    ${status_code_desejado}
     Get On Session    RestfulBooker    /booking/${booking_id}    expected_status=any
     Status Should Be    ${status_code_desejado}
+
+Criar booking com payload inválido
+    [Arguments]    ${status_code_desejado}
+    ${payload_invalido}=    Create Dictionary    firstname=    lastname=
+    ${response}=    POST On Session
+    ...    alias=RestfulBooker
+    ...    url=/booking
+    ...    json=${payload_invalido}
+    ...    expected_status=${status_code_desejado}
+    Set Suite Variable    ${response}
+
+Verificar resposta de erro para payload inválido
+    Should Be Equal As Integers    ${response.status_code}    400
+    Log    ${response.json()}
