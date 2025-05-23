@@ -4,7 +4,7 @@ Library  RequestsLibrary
 *** Keywords ***
 Realizar o login como administrador
     [Arguments]  ${status_code_desejado}
-    ${body}  Create Dictionary
+    &{body}  Create Dictionary
     ...      username=admin
     ...      password=password123
 

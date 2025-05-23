@@ -6,7 +6,7 @@ Resource  ../resources/auth.resource
 
 *** Keywords ***
 Criar um novo booking
-    ${bookingdates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05
+    &{bookingdates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05
 
     ${payload}    Create Dictionary
     ...           firstname=Johnny
@@ -21,10 +21,10 @@ Criar um novo booking
 Fazer o update de um Booking
     [Arguments]    ${status_code_desejado}
 
-    ${cookies}    Create Dictionary      Cookie=token=${token}
-    ${bookingdates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05
+    &{cookies}    Create Dictionary      Cookie=token=${token}
+    &{bookingdates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05
 
-    ${updated_payload}    Create Dictionary
+    &{updated_payload}    Create Dictionary
     ...        firstname=James
     ...        lastname=Brown
     ...        totalprice=${100}
@@ -32,7 +32,7 @@ Fazer o update de um Booking
     ...        bookingdates=${booking_dates}
     ...        additionalneeds=Breakfast
     
-    ${auth_header}    Create Dictionary    Cookie=token=${token}
+    &{auth_header}    Create Dictionary    Cookie=token=${token}
     ${response_update}    PUT On Session    RestfulBooker    /booking/${booking_id}
     ...                   headers=${auth_header} 
     ...                   json=${updated_payload}
@@ -58,14 +58,14 @@ Validar listagem de booking
 Fazer o update parcial de um Booking
     [Arguments]    ${status_code_desejado}
 
-    ${cookies}    Create Dictionary      Cookie=token=${token}
-    ${bookingdates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05
+    &{cookies}    Create Dictionary      Cookie=token=${token}
+    &{bookingdates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05
 
-    ${partial_updated_payload}    Create Dictionary
+    &{partial_updated_payload}    Create Dictionary
     ...        firstname=Linkin
     ...        lastname=Park
     
-    ${auth_header}    Create Dictionary    Cookie=token=${token}
+    &{auth_header}    Create Dictionary    Cookie=token=${token}
     ${response_update}    PATCH On Session    RestfulBooker    /booking/${booking_id}
     ...                   headers=${auth_header} 
     ...                   json=${partial_updated_payload}
@@ -76,7 +76,7 @@ Conferir atualização parcial
     Should Be Equal As Strings    ${response_check.json()["lastname"]}    Park
 
 Deletar o booking criado
-    ${auth_header}    Create Dictionary    Cookie=token=${token}
+    &{auth_header}    Create Dictionary    Cookie=token=${token}
     DELETE On Session    RestfulBooker    /booking/${booking_id}
     ...                  headers=${auth_header}
     Status Should Be    201
