@@ -35,3 +35,9 @@ Cenario 04: DELETE /booking 201
     Criar um novo booking
     Deletar o booking criado
     Verificar se foi deletado    status_code_desejado=404
+
+Cenario 05: POST /booking com payload inválido 400
+    [Tags]    POSTBooking    Negativo
+    Criar Sessão no Restful Booker
+    Criar booking com payload inválido    status_code_desejado=400
+    Verificar resposta de erro para payload inválido
