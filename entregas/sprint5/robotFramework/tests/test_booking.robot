@@ -11,8 +11,8 @@ Cenario 01: PUT /booking 200
     Criar Sessão no Restful Booker
     Realizar o login como administrador    status_code_desejado=200
     Criar um novo booking
-    Fazer o update de um Booking    status_code_desejado=200
-    Verificar se o update foi realizado
+    ${updated_payload}    ${response_update}=    Fazer o update de um Booking    status_code_desejado=200
+    Verificar se o update foi realizado    ${updated_payload}
 
 Cenario 02: GET /booking 200
     [Tags]    GETBooking
@@ -26,7 +26,8 @@ Cenario 03: PATCH /booking 200
     Realizar o login como administrador    status_code_desejado=200
     Criar um novo booking
     Fazer o update parcial de um Booking    status_code_desejado=200
-    Conferir atualização parcial
+    ${partial_updated_payload}    ${response_update}=    Fazer o update parcial de um Booking    status_code_desejado=200
+    Conferir atualização parcial    ${partial_updated_payload}
 
 Cenario 04: DELETE /booking 201
     [Tags]    DELETEBooking
