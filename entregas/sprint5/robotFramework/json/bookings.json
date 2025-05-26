@@ -1,0 +1,142 @@
+{
+  "bookings": {
+    "valid": {
+      "standard": {
+        "firstname": "John",
+        "lastname": "Doe",
+        "totalprice": 150,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-06-01",
+          "checkout": "2025-06-10"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "no_additionalneeds": {
+        "firstname": "Jane",
+        "lastname": "Smith",
+        "totalprice": 200,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-07-15",
+          "checkout": "2025-07-20"
+        }
+      },
+      "no_deposit": {
+        "firstname": "Robert",
+        "lastname": "Johnson",
+        "totalprice": 300,
+        "depositpaid": false,
+        "bookingdates": {
+          "checkin": "2025-08-01",
+          "checkout": "2025-08-15"
+        },
+        "additionalneeds": "Late checkout"
+      }
+    },
+    "invalid": {
+      "missing_firstname": {
+        "lastname": "Brown",
+        "totalprice": 150,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-06-01",
+          "checkout": "2025-06-10"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "missing_lastname": {
+        "firstname": "Michael",
+        "totalprice": 175,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-09-05",
+          "checkout": "2025-09-10"
+        },
+        "additionalneeds": "Extra towels"
+      },
+      "missing_bookingdates": {
+        "firstname": "Sarah",
+        "lastname": "Wilson",
+        "totalprice": 250,
+        "depositpaid": true,
+        "additionalneeds": "Airport transfer"
+      },
+      "missing_checkin": {
+        "firstname": "David",
+        "lastname": "Miller",
+        "totalprice": 220,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkout": "2025-10-15"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "missing_checkout": {
+        "firstname": "Emily",
+        "lastname": "Davis",
+        "totalprice": 190,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-11-01"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "checkout_before_checkin": {
+        "firstname": "Jennifer",
+        "lastname": "Taylor",
+        "totalprice": 180,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-12-10",
+          "checkout": "2025-12-05"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "past_dates": {
+        "firstname": "Thomas",
+        "lastname": "Anderson",
+        "totalprice": 210,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2020-01-01",
+          "checkout": "2020-01-05"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "negative_price": {
+        "firstname": "William",
+        "lastname": "Clark",
+        "totalprice": -50,
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-04-10",
+          "checkout": "2025-04-15"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "string_price": {
+        "firstname": "Richard",
+        "lastname": "White",
+        "totalprice": "two hundred",
+        "depositpaid": true,
+        "bookingdates": {
+          "checkin": "2025-05-20",
+          "checkout": "2025-05-25"
+        },
+        "additionalneeds": "Breakfast"
+      },
+      "string_depositpaid": {
+        "firstname": "Patricia",
+        "lastname": "Green",
+        "totalprice": 230,
+        "depositpaid": "yes",
+        "bookingdates": {
+          "checkin": "2025-03-15",
+          "checkout": "2025-03-20"
+        },
+        "additionalneeds": "Breakfast"
+      }
+    }
+  }
+}
