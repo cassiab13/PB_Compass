@@ -1,9 +1,10 @@
 *** Settings ***
-Resource  ../resources/ping.resource
-Resource  ../resources/create_session.resource
+Documentation    Teste do Endpoint /ping da API Restful Booker
+Resource         ../keywords/ping_keywords.robot
+Suite Setup      Criar Sessão no Restful Booker
 
 *** Test Cases ***
+
 Cenário 01: GET /ping 201
     [Tags]    GETPing
-    Criar Sessão no Restful Booker
     Verificar se a API esta disponivel e rodando

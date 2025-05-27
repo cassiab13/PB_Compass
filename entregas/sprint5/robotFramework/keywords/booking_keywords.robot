@@ -1,55 +1,41 @@
 *** Settings ***
-Library  RequestsLibrary
-Library  Collections
-Resource  auth.resource
+Resource  ../support/base.robot
 
 *** Keywords ***
 Criar um novo booking
-    [Arguments]    ${usar_dados_dinamicos}=${False}
-    
-    # Usar dados dinâmicos ou estáticos
-    ${payload}    Run Keyword If    ${usar_dados_dinamicos}    Gerar Dados Booking Dinamico
-    ...    ELSE    Carregar JSON Booking Valido
-    
-    ${response}    POST On Session    RestfulBooker    /booking    json=${payload}
+    [Arguments]    ${status_code_desejado}    ${usar_dados_dinamicos}=${False}
+    ${payload}    Importar Dados Dinamicos ou Estaticos    ${usar_dados_dinamicos}
+    ${response}    POST On Session    
+    ...    alias=RestfulBooker
+    ...    url=/booking    
+    ...    json=${payload}
     Set Global Variable    ${booking_id}    ${response.json()["bookingid"]}
     RETURN    ${payload}    ${response}
 
 Fazer o update de um Booking
     [Arguments]    ${status_code_desejado}    ${usar_dados_dinamicos}=${False}
-
-    &{cookies}    Create Dictionary      Cookie=token=${token}
-    ${booking_dates}    Create Dictionary    checkin=2025-05-01    checkout=2025-05-05     
-
-    # Usar dados dinâmicos ou estáticos para o update
-    ${updated_payload}    Run Keyword If    ${usar_dados_dinamicos}    Gerar Dados Booking Dinamico
-    ...    ELSE    Create Dictionary
-    ...        firstname=James
-    ...        lastname=Brown
-    ...        totalprice=${100}
-    ...        depositpaid=${True}
-    ...        bookingdates=${booking_dates}
-    ...        additionalneeds=Breakfast
-    
+    ${payload}    Importar Dados Dinamicos ou Estaticos    ${usar_dados_dinamicos}
     &{auth_header}    Create Dictionary    Cookie=token=${token}
     ${response_update}    PUT On Session    RestfulBooker    /booking/${booking_id}
-    ...                   headers=${auth_header} 
-    ...                   json=${updated_payload}
-    
-    Log To Console   ${updated_payload}
+    ...    headers=${auth_header}
+    ...    json=${payload}
+    Should Be Equal As Integers    ${response_update.status_code}    ${status_code_desejado}
+    Log To Console    Status esperado: ${status_code_desejado}
+    Log To Console    Resposta: ${response_update.status_code}
+    RETURN    ${payload}    ${response_update}
 
-    RETURN    ${updated_payload}    ${response_update}
+
 
 Verificar se o update foi realizado
     [Arguments]    ${updated_payload}
-    ${response_check}    GET On Session    RestfulBooker    /booking/${booking_id}
+    ${response_check}    GET On Session    alias=RestfulBooker    url=/booking/${booking_id}
     Should Be Equal As Strings    ${response_check.json()["firstname"]}    ${updated_payload["firstname"]}
     Should Be Equal    ${response_check.json()["depositpaid"]}    ${updated_payload["depositpaid"]}
 
 Validar listagem de booking
     [Arguments]    ${status_code_desejado}
 
-    ${response_get}    GET On Session    RestfulBooker    /booking    
+    ${response_get}    GET On Session    alias=RestfulBooker    url=/booking    
     @{json}=    Set Variable    ${response_get.json()}
     ${length}=    Get Length    ${json}
     Should Be True    ${length} > 0
@@ -62,8 +48,6 @@ Validar listagem de booking
 
 Fazer o update parcial de um Booking
     [Arguments]    ${status_code_desejado}
-
-    # Gerar nomes dinâmicos para o update parcial
     ${firstname}    FakerLibrary.First Name
     ${lastname}    FakerLibrary.Last Name
 
@@ -72,7 +56,7 @@ Fazer o update parcial de um Booking
     ...        lastname=${lastname}
     
     &{auth_header}    Create Dictionary    Cookie=token=${token}
-    ${response_update}    PATCH On Session    RestfulBooker    /booking/${booking_id}
+    ${response_update}    PATCH On Session    alias=RestfulBooker    url=/booking/${booking_id}
     ...                   headers=${auth_header} 
     ...                   json=${partial_updated_payload}
     
@@ -80,17 +64,17 @@ Fazer o update parcial de um Booking
 
 Conferir atualização parcial
     [Arguments]    ${partial_updated_payload}
-    ${response_check}    GET On Session    RestfulBooker    /booking/${booking_id}
+    ${response_check}    GET On Session    alias=RestfulBooker    url=/booking/${booking_id}
     Should Be Equal As Strings    ${response_check.json()["firstname"]}    ${partial_updated_payload["firstname"]}
     Should Be Equal As Strings    ${response_check.json()["lastname"]}    ${partial_updated_payload["lastname"]}
 
 Deletar o booking criado
     &{auth_header}    Create Dictionary    Cookie=token=${token}
-    DELETE On Session    RestfulBooker    /booking/${booking_id}
+    DELETE On Session    alias=RestfulBooker    url=/booking/${booking_id}
     ...                  headers=${auth_header}
     Status Should Be    201
 
 Verificar se foi deletado
     [Arguments]    ${status_code_desejado}
-    Get On Session    RestfulBooker    /booking/${booking_id}    expected_status=any
+    Get On Session    alias=RestfulBooker    url=/booking/${booking_id}    expected_status=any
     Status Should Be    ${status_code_desejado}

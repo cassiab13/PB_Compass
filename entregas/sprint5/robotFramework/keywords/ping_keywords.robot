@@ -1,5 +1,6 @@
 *** Settings ***
-Library  RequestsLibrary
+Documentation    Arquivo com as keywords
+Resource         ../support/base.robot
 
 *** Keywords ***
 Verificar se a API esta disponivel e rodando
