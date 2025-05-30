@@ -1,38 +1,28 @@
 *** Settings ***
-Resource  ../resources/booking.resource
-Resource  ../resources/auth.resource
-Resource  ../resources/create_session.resource
-
+Documentation    Teste do Endpoint /booking da API Restful Booker com dados estáticos
+Resource         ../support/base.robot
+Suite Setup      Setup para booking
 *** Test Cases ***
-#Cenário de listar por id validado no PUT/booking
-#Cenário de criar um booking validado na Keyword Criar um novo booking
 Cenario 01: PUT /booking 200
     [Tags]    PUTBooking
-    Criar Sessão no Restful Booker
-    Realizar o login como administrador    status_code_desejado=200
-    Criar um novo booking
-    ${updated_payload}    ${response_update}=    Fazer o update de um Booking    status_code_desejado=200
+    ${updated_payload}    
+    ...    ${response_update}=    Fazer o update de um Booking
+    ...    status_code_desejado=200
     Verificar se o update foi realizado    ${updated_payload}
+
 
 Cenario 02: GET /booking 200
     [Tags]    GETBooking
-    Criar Sessão no Restful Booker
     Validar listagem de booking    status_code_desejado=200
 
 
 Cenario 03: PATCH /booking 200
     [Tags]    PATCHBooking
-    Criar Sessão no Restful Booker
-    Realizar o login como administrador    status_code_desejado=200
-    Criar um novo booking
     Fazer o update parcial de um Booking    status_code_desejado=200
     ${partial_updated_payload}    ${response_update}=    Fazer o update parcial de um Booking    status_code_desejado=200
     Conferir atualização parcial    ${partial_updated_payload}
 
 Cenario 04: DELETE /booking 201
     [Tags]    DELETEBooking
-    Criar Sessão no Restful Booker
-    Realizar o login como administrador    status_code_desejado=200
-    Criar um novo booking
     Deletar o booking criado
     Verificar se foi deletado    status_code_desejado=404
