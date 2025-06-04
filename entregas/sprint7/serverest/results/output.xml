@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3 (Python 3.13.3 on win32)" generated="2025-06-04T18:48:10.343640" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\tests">
+<suite id="s1-s1" name="Unit Tests" source="C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\tests\unit_tests">
+<suite id="s1-s1-s1" name="User" source="C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\tests\unit_tests\user">
+<suite id="s1-s1-s1-s1" name="Test User Delete" source="C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\tests\unit_tests\user\test_user_delete.robot">
+<kw name="Create Session on Serverest" owner="base" type="SETUP">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-04T18:48:11.644979" level="INFO">${headers} = {'Accept': 'application/json', 'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Accept=application/json</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-04T18:48:11.644341" elapsed="0.000709"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-04T18:48:11.645612" level="INFO">Creating Session using : alias=Serverest, url=https://serverest.dev, headers={'Accept': 'application/json', 'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=Serverest</arg>
+<arg>url=${BASE_URI}</arg>
+<arg>headers=${headers}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-04T18:48:11.645291" elapsed="0.000555"/>
+</kw>
+<status status="PASS" start="2025-06-04T18:48:11.643316" elapsed="0.002608"/>
+</kw>
+<test id="s1-s1-s1-s1-t1" name="CT019: Deletar usuario com ID invalido" line="13">
+<kw name="Deletar usuario com ID invalido" owner="delete_user_keywords">
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-06-04T18:48:12.059225" level="INFO">DELETE Request : url=https://serverest.dev/usuarios/asdfewrqwe123456 
+ path_url=/usuarios/asdfewrqwe123456 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-06-04T18:48:12.059683" level="INFO">DELETE Response : url=https://serverest.dev/usuarios/asdfewrqwe123456 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '2d5d64d8f450247f66e7385b32fda9cc;o=1', 'date': 'Wed, 04 Jun 2025 21:48:11 GMT', 'server': 'Google Frontend', 'Content-Length': '46'} 
+ body={
+    "message": "Nenhum registro excluído"
+} 
+ </msg>
+<msg time="2025-06-04T18:48:12.060067" level="INFO">C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\.venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-06-04T18:48:12.061313" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>alias=Serverest</arg>
+<arg>url=/usuarios/asdfewrqwe123456</arg>
+<arg>expected_status=${status_code_desejado}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-04T18:48:11.646790" elapsed="0.414689"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-06-04T18:48:12.064740" level="INFO">${message} = Nenhum registro excluído</msg>
+<var>${message}</var>
+<arg>${response.json()}</arg>
+<arg>message</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-06-04T18:48:12.062146" elapsed="0.002740"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${message}</arg>
+<arg>Nenhum registro excluído</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-06-04T18:48:12.065474" elapsed="0.000785"/>
+</kw>
+<arg>200</arg>
+<status status="PASS" start="2025-06-04T18:48:11.646541" elapsed="0.420035"/>
+</kw>
+<tag>CT019</tag>
+<status status="PASS" start="2025-06-04T18:48:11.645983" elapsed="0.421736"/>
+</test>
+<doc>Testing the /users endpoint of the Serverest API</doc>
+<status status="PASS" start="2025-06-04T18:48:10.381915" elapsed="1.689632"/>
+</suite>
+<status status="PASS" start="2025-06-04T18:48:10.380269" elapsed="1.696628"/>
+</suite>
+<status status="PASS" start="2025-06-04T18:48:10.378470" elapsed="1.702172"/>
+</suite>
+<status status="PASS" start="2025-06-04T18:48:10.345964" elapsed="1.737256"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">CT019</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="1" fail="0" skip="0">Tests</stat>
+<stat name="Unit Tests" id="s1-s1" pass="1" fail="0" skip="0">Tests.Unit Tests</stat>
+<stat name="User" id="s1-s1-s1" pass="1" fail="0" skip="0">Tests.Unit Tests.User</stat>
+<stat name="Test User Delete" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">Tests.Unit Tests.User.Test User Delete</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-06-04T18:48:11.635039" level="WARN">Error in file 'C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\support\common\utils.robot' on line 10: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-04T18:48:11.635351" level="WARN">Error in file 'C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\support\common\utils.robot' on line 22: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-04T18:48:11.635786" level="WARN">Error in file 'C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\support\common\utils.robot' on line 34: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-04T18:48:11.636205" level="WARN">Error in file 'C:\Users\cassi\OneDrive\Área de Trabalho\OneDrive\Compass\compass\entregas\sprint7\serverest\support\common\utils.robot' on line 43: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>
