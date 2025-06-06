@@ -22,3 +22,28 @@ Excluir carrinho
     
     ${mensagem}=    Get From Dictionary    ${response.json()}    message 
     Should Be Equal As Strings    ${mensagem}    Registro excluído com sucesso
+
+Excluir carrinho com token invalido
+    [Arguments]    ${status_code_desejado}
+    ${response}=    DELETE On Session
+    ...             alias=Serverest
+    ...             url=/carrinhos/concluir-compra
+    ...             expected_status=${status_code_desejado}
+    
+    ${mensagem}=    Get From Dictionary    ${response.json()}    message 
+    Should Be Equal As Strings    ${mensagem}    Token de acesso ausente, inválido, expirado ou usuário do token não existe mais
+
+Excluir carrinho e retornar produtos para estoque
+    [Arguments]     ${status_code_desejado}
+
+    ${headers}=    Create Dictionary
+    ...            Authorization=Bearer ${token}
+    ...            Content-Type=application/json
+    
+    ${response}=    DELETE On Session
+    ...             alias=Serverest
+    ...             url=/carrinhos/cancelar-compra
+    ...             headers=${headers}
+    ...             expected_status=${status_code_desejado}
+    ${mensagem}=    Get From Dictionary    ${response.json()}    message 
+    Should Be Equal As Strings    ${mensagem}    Registro excluído com sucesso
