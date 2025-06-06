@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Keywords for the user endpoint
-Resource         ../support/base.robot
-Resource         ../support/common/utils.robot
+Resource         ../../support/base.robot
+Resource         ../../support/common/utils.robot
 
 *** Keywords ***
 Listar todos usuarios

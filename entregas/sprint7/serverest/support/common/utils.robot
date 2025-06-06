@@ -2,6 +2,8 @@
 Documentation    Utils Keywords
 Library          OperatingSystem
 Resource         ../support/base.robot
+Resource    ../../keywords/users/create_user_keywords.robot
+Resource    ../../keywords/login/login_keyword.robot
 
 *** Keywords ***
 Get File User from fixtures
@@ -41,3 +43,8 @@ Buscar usuario por ID
     ...             expected_status=200
     ${user_data}=   Convert To Dictionary    ${response.json()}
     [Return]    ${user_data}
+
+Preparar Sessao para Rota Produtos
+    Create Session on Serverest
+    Cadastrar usuario valido    201
+    Login com credenciais validas    200    ${valid_user}

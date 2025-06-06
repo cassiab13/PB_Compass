@@ -6,9 +6,9 @@ Library          Collections
 *** Keywords ***
 
 Generate dynamic data for Product
-    ${nome}        FakerLibrary.Name
-    ${preco}       FakerLibrary.Pyfloat
-    ${descricao}   FakerLibrary.Words
+    ${nome}        FakerLibrary.Name Nonbinary
+    ${preco}       FakerLibrary.Pyint
+    ${descricao}   FakerLibrary.Color Name
     ${quantidade}  FakerLibrary.Random Int
 
     ${produto}    Create Dictionary
@@ -31,3 +31,7 @@ Generate dynamic data for User
     ...           administrador=true
     
     RETURN    ${usuario}
+
+Generate dynamic ID
+    ${id}    FakerLibrary.Password    length=16    special_chars=${False}   upper_case=${False}  lower_case=${True}
+    RETURN    ${id}
