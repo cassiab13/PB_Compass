@@ -1,0 +1,50 @@
+{"level":30,"time":"2025-06-11T19:43:23.167Z","pid":13324,"hostname":"CYIB-13","msg":"Listening on 127.0.0.1:62760"}
+(node:13324) DeprecationWarning: Calling start() is no longer necessary. It can be safely omitted.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+{"level":30,"time":"2025-06-11T19:43:23.988Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method newBrowser"}
+{"level":30,"time":"2025-06-11T19:43:25.753Z","pid":13324,"hostname":"CYIB-13","msg":"Adding browser to stack: chromium, version: 136.0.7103.25"}
+{"level":30,"time":"2025-06-11T19:43:25.757Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method newBrowser"}
+{"level":30,"time":"2025-06-11T19:43:25.756Z","pid":13324,"hostname":"CYIB-13","msg":"Adding 0 contexts to browser"}
+{"level":30,"time":"2025-06-11T19:43:25.770Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method newPage"}
+{"level":30,"time":"2025-06-11T19:43:25.771Z","pid":13324,"hostname":"CYIB-13","msg":"currentBrowser: [object Object]"}
+{"level":30,"time":"2025-06-11T19:43:25.825Z","pid":13324,"hostname":"CYIB-13","msg":"Changed active context"}
+{"level":30,"time":"2025-06-11T19:43:26.487Z","pid":13324,"hostname":"CYIB-13","msg":"Video path: undefined"}
+{"level":30,"time":"2025-06-11T19:43:26.488Z","pid":13324,"hostname":"CYIB-13","msg":"Changed active page"}
+{"level":30,"time":"2025-06-11T19:43:27.660Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method newPage"}
+{"level":30,"time":"2025-06-11T19:43:29.211Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-06-11T19:43:29.213Z","pid":13324,"hostname":"CYIB-13","msg":"Strict mode is enabled, find Locator with css=input[placeholder$=mail] in page."}
+{"level":30,"time":"2025-06-11T19:43:29.409Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method fillText"}
+{"level":30,"time":"2025-06-11T19:43:29.429Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method fillText"}
+{"level":30,"time":"2025-06-11T19:43:29.430Z","pid":13324,"hostname":"CYIB-13","msg":"Strict mode is enabled, find Locator with css=input[placeholder=Senha] in page."}
+{"level":30,"time":"2025-06-11T19:43:29.497Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method fillText"}
+{"level":30,"time":"2025-06-11T19:43:29.507Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method click"}
+{"level":30,"time":"2025-06-11T19:43:29.508Z","pid":13324,"hostname":"CYIB-13","msg":"Strict mode is enabled, find Locator with css=button >> text=Entrar in page."}
+{"level":30,"time":"2025-06-11T19:43:29.597Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method click"}
+{"level":30,"time":"2025-06-11T19:43:29.608Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2025-06-11T19:43:29.609Z","pid":13324,"hostname":"CYIB-13","msg":"Strict mode is enabled, find Locator with css=header .right small in page."}
+{"level":30,"time":"2025-06-11T19:43:30.467Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2025-06-11T19:43:30.477Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method getText"}
+{"level":30,"time":"2025-06-11T19:43:30.478Z","pid":13324,"hostname":"CYIB-13","msg":"Strict mode is enabled, find Locator with css=header .right small in page."}
+{"level":30,"time":"2025-06-11T19:43:30.528Z","pid":13324,"hostname":"CYIB-13","msg":"Retrieved text for element css=header .right small containing Olá, Cassia"}
+{"level":30,"time":"2025-06-11T19:43:30.528Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method getText"}
+{"level":30,"time":"2025-06-11T19:43:30.537Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method takeScreenshot"}
+{"level":30,"time":"2025-06-11T19:43:30.538Z","pid":13324,"hostname":"CYIB-13","Take screenshot with options: ":{"path":"C:\\QAx\\projects\\mark85-robot-express\\logs\\browser\\screenshot\\robotframework-browser-screenshot-1.png","fileType":"png","fullPage":false,"timeout":10000,"omitBackground":false}}
+{"level":30,"time":"2025-06-11T19:43:30.916Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method takeScreenshot"}
+{"level":30,"time":"2025-06-11T19:43:30.931Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.935Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.940Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.943Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.947Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.950Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.956Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.959Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:30.963Z","pid":13324,"hostname":"CYIB-13","msg":"Changed active context"}
+{"level":30,"time":"2025-06-11T19:43:30.963Z","pid":13324,"hostname":"CYIB-13","msg":"Changing current active page: page=5e16344c-a4b1-471c-86db-c1e6295d8aef"}
+{"level":30,"time":"2025-06-11T19:43:30.963Z","pid":13324,"hostname":"CYIB-13","msg":"Changed active page"}
+{"level":30,"time":"2025-06-11T19:43:30.970Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method closeContext"}
+{"level":30,"time":"2025-06-11T19:43:31.017Z","pid":13324,"hostname":"CYIB-13","msg":"Removed page=abfca29a-8cbc-4894-8673-b8fd20e38b1d from context=e47ef4bf-2c71-46ac-bb16-1e2c37fa44f0 page stack"}
+{"level":30,"time":"2025-06-11T19:43:31.093Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method closeContext"}
+{"level":30,"time":"2025-06-11T19:43:31.112Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:31.113Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2025-06-11T19:43:31.244Z","pid":13324,"hostname":"CYIB-13","msg":"Start of node method closeAllBrowsers"}
+{"level":30,"time":"2025-06-11T19:43:31.556Z","pid":13324,"hostname":"CYIB-13","msg":"End of node method closeAllBrowsers"}
