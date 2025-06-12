@@ -29,4 +29,4 @@ Não deve logar com senha inválida
     
     Set To Dictionary              ${user}    password=abc123
     Submit login form              ${user}
-    Notice should be               Ocorreu um erro
+    Notice should be               Ocorreu um erro ao fazer login, verifique suas credenciais.
