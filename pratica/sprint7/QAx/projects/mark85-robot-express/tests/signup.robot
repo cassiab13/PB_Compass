@@ -1,7 +1,8 @@
 *** Settings ***
 Documentation        Cenarios de testes do cadastro de usuários
 Library              FakerLibrary
-Resource             ../resources/base.robot
+Resource             ../resources/base.resource
+Resource             ../resources/pages/SignupPage.resource
 
 Test Setup       Start Session
 Test Teardown    Take Screenshot
@@ -16,20 +17,10 @@ Deve poder cadastrar um novo usuario
     
     Remove user from database    ${user}[email]
 
-    Go To    http://localhost:3000/signup
-
-    Wait For Elements State    xpath=//h1    visible      5
-    Get Text                   xpath=//h1    equal        Faça seu cadastro
-
-    Fill Text    id=name       ${user}[name]
-    Fill Text    id=email      ${user}[email] 
-    Fill Text    id=password   ${user}[password]
-
-    Click        id=buttonSignup
-    
-    Wait For Elements State    css=.notice p     visible    5
-    Get Text                   css=.notice p     equal      Boas vindas ao Mark85, o seu gerenciador de tarefas.
-    
+    Go to signup page
+    Submit signup form    ${user}
+    Notice should be      Boas vindas ao Mark85, o seu gerenciador de tarefas.
+  
 Não deve permitir o cadastro com email duplicado
     [Tags]    duplicado
 
@@ -41,16 +32,50 @@ Não deve permitir o cadastro com email duplicado
     Remove user from database    ${user}[email]
     Insert user into database    ${user}
 
-    Go To    http://localhost:3000/signup
+    Go to signup page
+    Submit signup form    ${user}
+    Notice should be      Oops! Já existe uma conta com o e-mail informado.
 
-    Wait For Elements State    xpath=//h1    visible      5
-    Get Text                   xpath=//h1    equal        Faça seu cadastro
+Campos obrigatorios
+    [Tags]     required
 
-    Fill Text    id=name       ${user}[name]
-    Fill Text    id=email      ${user}[email]
-    Fill Text    id=password   ${user}[password]
+    ${user}    Create Dictionary
+    ...        name=${EMPTY}
+    ...        email=${EMPTY}
+    ...        password=${EMPTY}
+    
+    Go to signup page
+    Submit signup form    ${user}
+    
+    Alert should be    Informe seu nome completo
+    Alert should be    Informe seu e-email    
+    Alert should be    Informe uma senha com pelo menos 6 digitos   
+    
+Não deve cadastrar com email incorreto
+    [Tags]     invalid_email
 
-    Click        id=buttonSignup
+    ${user}    Create Dictionary
+    ...        name=Charles
+    ...        email=charles.com
+    ...        password=p123456
+    
+    Go to signup page
+    Submit signup form    ${user}
+    Alert should be    Digite um e-mail válido
 
-    Wait For Elements State    css=.notice p     visible    5
-    Get Text                   css=.notice p     equal      Oops! Já existe uma conta com o e-mail informado.
+Não deve cadastrar com senhas muito curtas
+    [Tags]              temp
+    @{password_list}    Create List    1    12    123    1234    12345
+
+    FOR    ${password}    IN    @{password_list}
+            ${user}    Create Dictionary
+    ...        name=Cassia
+    ...        email=ci@gmail.com
+    ...        password=${password}
+    
+    Go to signup page
+    Submit signup form    ${user}
+   
+    Alert should be    Informe uma senha com pelo menos 6 digitos  
+        
+    END
